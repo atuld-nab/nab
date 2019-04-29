@@ -1,5 +1,4 @@
 package au.com.nab;
-import au.com.nab.controller.CurrencyController;
 import au.com.nab.model.Currency;
 import au.com.nab.repository.CurrencyRepository;
 

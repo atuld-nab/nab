@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @org.springframework.boot.autoconfigure.SpringBootApplication
 @EnableAutoConfiguration
-@EntityScan(basePackages = { "com.au.nab.model" })
 public class CurrencyTrackerBoot {
 	public static void main (String [] args)
 	{
