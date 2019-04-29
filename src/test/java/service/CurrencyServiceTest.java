@@ -36,7 +36,7 @@ public class CurrencyServiceTest {
 		MockitoAnnotations.initMocks(this);
 		res = new ProfitResponseModel();
     	res.setBuyingPrice(new PriceTimeStamp(LocalTime.parse("09:15"),34.9));
-    	res.setBuyingPrice(new PriceTimeStamp(LocalTime.parse("12:30"),37.01));
+    	res.setSellPrice(new PriceTimeStamp(LocalTime.parse("12:30"),37.01));
     	res.setCurrency("BTC");
     	res.setProfit(2.1099999999999994);
     	

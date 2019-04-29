@@ -20,8 +20,13 @@ import au.com.nab.service.CurrencyService;
 
 @RestController
 public class CurrencyController {
-    @Autowired
-    CurrencyService currencyService;
+    
+	private CurrencyService currencyService;
+	@Autowired
+    public CurrencyController(CurrencyService currencyService) {
+        this.currencyService = currencyService;
+    }
+	
     Logger logger = getLogger(CurrencyController.class);
 
     @GetMapping(path ="/getAll",produces = {MediaType.APPLICATION_JSON_VALUE})
