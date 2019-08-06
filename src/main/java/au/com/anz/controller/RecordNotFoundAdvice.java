@@ -1,12 +1,13 @@
-package au.com.nab.controller;
+package au.com.anz.controller;
 
-import au.com.nab.Exception.OperatorServiceException;
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import au.com.anz.Exception.TransactionServiceException;
 
 import static org.slf4j.LoggerFactory.getLogger;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -16,8 +17,8 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 public class RecordNotFoundAdvice {
     Logger log = getLogger(RecordNotFoundAdvice.class);
     @ResponseBody
-    @ExceptionHandler(OperatorServiceException.class)
-    public ResponseEntity<String> serviceExceptionHandler(OperatorServiceException ex){
+    @ExceptionHandler(TransactionServiceException.class)
+    public ResponseEntity<String> serviceExceptionHandler(TransactionServiceException ex){
         return  error(NOT_FOUND,ex);
     }
 
