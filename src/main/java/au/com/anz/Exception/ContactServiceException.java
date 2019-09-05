@@ -1,12 +1,12 @@
 package au.com.anz.Exception;
 
-public class TransactionServiceException extends RuntimeException {
+public class ContactServiceException extends RuntimeException {
    /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-public  TransactionServiceException(String message){
+public  ContactServiceException(String message){
         super("Exception occured at service layer because of"+message);
     }
 }
