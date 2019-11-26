@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import au.com.anz.Exception.ContactServiceException;
+import au.com.anz.Exception.ProductServiceException;
 
 import static org.slf4j.LoggerFactory.getLogger;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -17,8 +17,8 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 public class RecordNotFoundAdvice {
     Logger log = getLogger(RecordNotFoundAdvice.class);
     @ResponseBody
-    @ExceptionHandler(ContactServiceException.class)
-    public ResponseEntity<String> serviceExceptionHandler(ContactServiceException ex){
+    @ExceptionHandler(ProductServiceException.class)
+    public ResponseEntity<String> serviceExceptionHandler(ProductServiceException ex){
         return  error(NOT_FOUND,ex);
     }
 

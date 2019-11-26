@@ -15,61 +15,47 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import au.com.anz.OperatorBoot;
-import au.com.anz.model.Contact;
-import au.com.anz.service.ContactService;
+import au.com.anz.service.ProductService;
 @SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = OperatorBoot.class)
 @ContextConfiguration(classes = MockServletContext.class)
-@WebMvcTest(ContactController.class)
-public class ContactControllerTest {
+@WebMvcTest(ProductController.class)
+public class ProductControllerTest {
 
 	private MockMvc mvc;
-	private ContactService contactService;
+	private ProductService contactService;
 
     
     @Before
     public void setUp()
      {
-    	contactService = mock(ContactService.class);
-		mvc = MockMvcBuilders.standaloneSetup(new ContactController(contactService)).build();
+    	contactService = mock(ProductService.class);
+		mvc = MockMvcBuilders.standaloneSetup(new ProductController(contactService)).build();
     	     }
 
     @Test
-    public void getDataByAddressBookStatus() throws Exception {
-    	this.mvc.perform(get("/getDetail/{code}","south")).andExpect(status().isOk());
+    public void getDataBySkuCode() throws Exception {
+    	this.mvc.perform(get("/getDetail/{code}",1)).andExpect(status().isOk());
 
     }
   
     @Test
-    public void getDataByAddressBookResponse()throws Exception {
-    	MvcResult result= mvc.perform(get("/getDetail/{code}","south").
+    public void testGroupingByPrice()throws Exception {
+    	MvcResult result= mvc.perform(get("/getPriceGrouping").
         		accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
        	Assert.assertNotNull(result.getResponse().getContentAsString());
    }
     
     
  @Test
- public void testComparisonEndPoint() throws Exception{
-	 MvcResult mvcResult = mvc.perform(get("/compare/{list1}/{list2}", "north", "south"))
+ public void testGroupingbyBrand() throws Exception{
+	 MvcResult mvcResult = mvc.perform(get("/getBrandGrouping"))
 	            .andExpect(status().isOk()).andReturn();
 		Assert.assertNotNull(mvcResult.getResponse().getContentAsString());
  }
- @Test
- public void testsaveContact() throws Exception {
-	 String jsonString = "{\n" +
-             "\"name\":\"golu\",\n" +
-             "\"phone\":\"9953290636\"\n" +
-             "}";
-	 mvc.perform(MockMvcRequestBuilders.post("/save?address=springvale")
-             .contentType(MediaType.APPLICATION_JSON)
-             .content(jsonString))
-             .andExpect(MockMvcResultMatchers.status().isCreated());
-
- }
+ 
  }
